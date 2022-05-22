@@ -1,9 +1,6 @@
-﻿using Core.ApiDoc;
-using Core.CrossCuttingConcerns.Caching;
+﻿using Core.CrossCuttingConcerns.Caching;
 using Core.CrossCuttingConcerns.Caching.Microsoft;
-using Core.Utilities.FileUpload;
 using Core.Utilities.IoC;
-using Core.Utilities.Mail;
 using Core.Utilities.Messages;
 using Core.Utilities.UrlConfiguration;
 using Core.Utilities.UserRequest;
@@ -23,10 +20,6 @@ namespace Core.DependencyResolvers
         {
             services.AddMemoryCache();
             services.AddSingleton<ICacheManager, MemoryCacheManager>();
-            services.AddSingleton<IMailService, MailManager>();
-            services.AddSingleton<IEmailConfiguration, EmailConfiguration>();
-            services.AddSingleton<IFtpService, FtpManager>();
-            services.AddSingleton<IFtpConfiguration, FtpConfiguration>();
             services.AddSingleton<IUrlConfiguration, UrlConfiguration>();
             services.AddSingleton<IUrlService, UrlManager>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -34,33 +27,20 @@ namespace Core.DependencyResolvers
             services.AddSingleton<Stopwatch>();
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc(SwaggerMessages.Version, new OpenApiInfo
                 {
                     Version = SwaggerMessages.Version,
                     Title = SwaggerMessages.Title,
-                    Description = SwaggerMessages.Description,
-                    //TermsOfService = new Uri(SwaggerMessages.TermsOfService),
-                    //Contact = new OpenApiContact
-                    //{
-                    //    Name = SwaggerMessages.ContactName,
-                    //},
-                    //License = new OpenApiLicense
-                    //{
-                    //    Name = SwaggerMessages.LicenceName,
-                    //},
-                });
-
-                c.OperationFilter<AddAuthHeaderOperationFilter>();
-                c.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
-                {
-                    Description = "`Token only!!!` - without `Bearer_` prefix",
-                    Type = SecuritySchemeType.Http,
-                    BearerFormat = "JWT",
-                    In = ParameterLocation.Header,
-                    Scheme = "bearer"
+                    Contact = new OpenApiContact
+                    {
+                        Name = SwaggerMessages.ContactName,
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = SwaggerMessages.LicenceName,
+                    },
                 });
             });
         }

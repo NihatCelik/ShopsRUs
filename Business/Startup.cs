@@ -74,13 +74,12 @@ namespace Business
             {
                 return memberInfo.GetCustomAttribute<System.ComponentModel.DataAnnotations.DisplayAttribute>()?.GetName();
             };
-
-            ConfigureImagePath();
         }
 
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
             ConfigureServices(services);
+            services.AddTransient<IInvoiceRepository, InvoiceRepository>();
             services.AddTransient<IDiscountRepository, DiscountRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
@@ -90,16 +89,17 @@ namespace Business
         public void ConfigureStagingServices(IServiceCollection services)
         {
             ConfigureServices(services);
+            services.AddTransient<IInvoiceRepository, InvoiceRepository>();
             services.AddTransient<IDiscountRepository, DiscountRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
-            ces.AddTransient<ITrademarkRepository, TrademarkRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddDbContext<ProjectDbContext, PgDbContext>();
+            services.AddDbContext<ProjectDbContext>();
         }
 
         public void ConfigureProductionServices(IServiceCollection services)
         {
             ConfigureServices(services);
+            services.AddTransient<IInvoiceRepository, InvoiceRepository>();
             services.AddTransient<IDiscountRepository, DiscountRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
