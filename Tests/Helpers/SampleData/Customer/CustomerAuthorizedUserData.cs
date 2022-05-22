@@ -1,6 +1,4 @@
-﻿using Business.Handlers.CustomerAuthorizedUsers.Commands;
-
-namespace Tests.Helpers.SampleData
+﻿namespace Tests.Helpers.SampleData
 {
     public static class CustomerAuthorizedUserData
     {

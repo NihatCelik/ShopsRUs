@@ -1,16 +1,16 @@
 ﻿using Business.BusinessAspects;
 using Business.Constants;
+using Business.Handlers.Discounts.ValidationRules;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Enums;
 using MediatR;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
-using Business.Handlers.Discounts.ValidationRules;
-using Entities.Enums;
 
 namespace Business.Handlers.Discounts.Commands
 {

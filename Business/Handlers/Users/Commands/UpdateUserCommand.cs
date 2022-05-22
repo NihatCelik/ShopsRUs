@@ -1,14 +1,14 @@
-﻿using Business.Constants;
-using Business.BusinessAspects;
+﻿using Business.BusinessAspects;
+using Business.Constants;
+using Business.Handlers.Users.ValidationRules;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using Entities.Enums;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using Core.Aspects.Autofac.Validation;
-using Business.Handlers.Users.ValidationRules;
-using Entities.Enums;
 
 namespace Business.Handlers.Users.Commands
 {

@@ -1,22 +1,17 @@
-﻿using Business.Handlers.Users.Queries;
+﻿using Business.Constants;
+using Business.Handlers.Users.Commands;
+using Business.Handlers.Users.Queries;
 using DataAccess.Abstract;
+using Entities.Concrete;
+using FluentAssertions;
+using MediatR;
 using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using static Business.Handlers.Users.Queries.GetUserQuery;
-using Entities.Concrete;
-using static Business.Handlers.Users.Queries.GetUsersQuery;
-using static Business.Handlers.Users.Commands.CreateUserCommand;
-using Business.Handlers.Users.Commands;
-using Business.Constants;
-using static Business.Handlers.Users.Commands.UpdateUserCommand;
-using static Business.Handlers.Users.Commands.DeleteUserCommand;
-using MediatR;
-using System.Linq;
-using FluentAssertions;
 
 
 namespace Tests.Business.HandlersTest

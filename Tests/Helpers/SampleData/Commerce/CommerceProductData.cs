@@ -1,6 +1,4 @@
-﻿using Business.Handlers.CommerceProducts.Commands;
-
-namespace Tests.Helpers.SampleData
+﻿namespace Tests.Helpers.SampleData
 {
     public static class CommerceProductData
     {

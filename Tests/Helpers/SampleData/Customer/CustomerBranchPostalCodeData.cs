@@ -1,7 +1,4 @@
-﻿using Business.Handlers.CustomerBranchPostalCodes.Commands;
-using Entities.Concrete;
-
-namespace Tests.Helpers.SampleData
+﻿namespace Tests.Helpers.SampleData
 {
     public static class CustomerBranchPostalCodeData
     {

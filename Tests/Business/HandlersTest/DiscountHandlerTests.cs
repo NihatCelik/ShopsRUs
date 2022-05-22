@@ -1,17 +1,17 @@
-﻿using Business.Handlers.Discounts.Queries;
+﻿using Business.Constants;
+using Business.Handlers.Discounts.Commands;
+using Business.Handlers.Discounts.Queries;
 using DataAccess.Abstract;
+using Entities.Concrete;
+using FluentAssertions;
+using MediatR;
 using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Entities.Concrete;
-using Business.Handlers.Discounts.Commands;
-using Business.Constants;
-using MediatR;
-using System.Linq;
-using FluentAssertions;
 
 namespace Tests.Business.HandlersTest
 {

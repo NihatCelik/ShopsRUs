@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Business.AutoMapper;
 
 namespace Tests.Helpers.MockInterfaces
 {

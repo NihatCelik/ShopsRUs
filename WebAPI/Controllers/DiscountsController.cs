@@ -12,56 +12,31 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public async Task<IActionResult> GetList()
         {
-            var result = await Mediator.Send(new GetDiscountsQuery());
-            if (result.Success)
-            {
-                return Ok(result.Data);
-            }
-            return BadRequest(result.Message);
+            return GetResponse(await Mediator.Send(new GetDiscountsQuery()));
         }
 
         [HttpGet("getbyid")]
         public async Task<IActionResult> GetById(int id)
         {
-            var result = await Mediator.Send(new GetDiscountQuery { Id = id });
-            if (result.Success)
-            {
-                return Ok(result.Data);
-            }
-            return BadRequest(result.Message);
+            return GetResponse(await Mediator.Send(new GetDiscountQuery { Id = id }));
         }
 
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] CreateDiscountCommand createDiscount)
         {
-            var result = await Mediator.Send(createDiscount);
-            if (result.Success)
-            {
-                return Ok(result.Message);
-            }
-            return BadRequest(result.Message);
+            return GetResponse(await Mediator.Send(createDiscount));
         }
 
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateDiscountCommand updateDiscount)
         {
-            var result = await Mediator.Send(updateDiscount);
-            if (result.Success)
-            {
-                return Ok(result.Message);
-            }
-            return BadRequest(result.Message);
+            return GetResponse(await Mediator.Send(updateDiscount));
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] DeleteDiscountCommand deleteDiscount)
         {
-            var result = await Mediator.Send(deleteDiscount);
-            if (result.Success)
-            {
-                return Ok(result.Message);
-            }
-            return BadRequest(result.Message);
+            return GetResponse(await Mediator.Send(deleteDiscount));
         }
     }
 }

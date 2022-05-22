@@ -1,5 +1,4 @@
-﻿using Business.Handlers.Users.Commands;
-using Core.Utilities.Security.Hashing;
+﻿using Core.Utilities.Security.Hashing;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;

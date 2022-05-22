@@ -1,7 +1,4 @@
-﻿using Business.Handlers.ExpenseCards.Commands;
-using Entities.Concrete;
-
-namespace Tests.Helpers.SampleData
+﻿namespace Tests.Helpers.SampleData
 {
     public static class ExpenseCardData
     {
