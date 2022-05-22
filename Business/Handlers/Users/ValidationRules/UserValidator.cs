@@ -1,10 +1,8 @@
-﻿
-using Business.Handlers.Users.Commands;
+﻿using Business.Handlers.Users.Commands;
 using FluentValidation;
 
 namespace Business.Handlers.Users.ValidationRules
 {
-
     public class CreateUserValidator : AbstractValidator<CreateUserCommand>
     {
         public CreateUserValidator()
@@ -14,11 +12,10 @@ namespace Business.Handlers.Users.ValidationRules
             RuleFor(x => x.Email).NotEmpty();
             RuleFor(x => x.PhoneNumber).NotEmpty();
             RuleFor(x => x.Address).NotEmpty();
-            RuleFor(x => x.CreatedDate).NotEmpty();
-            RuleFor(x => x.Invoices).NotEmpty();
-
+            RuleFor(x => x.UserType).NotEmpty();
         }
     }
+
     public class UpdateUserValidator : AbstractValidator<UpdateUserCommand>
     {
         public UpdateUserValidator()
@@ -28,9 +25,7 @@ namespace Business.Handlers.Users.ValidationRules
             RuleFor(x => x.Email).NotEmpty();
             RuleFor(x => x.PhoneNumber).NotEmpty();
             RuleFor(x => x.Address).NotEmpty();
-            RuleFor(x => x.CreatedDate).NotEmpty();
-            RuleFor(x => x.Invoices).NotEmpty();
-
+            RuleFor(x => x.UserType).NotEmpty();
         }
     }
 }
