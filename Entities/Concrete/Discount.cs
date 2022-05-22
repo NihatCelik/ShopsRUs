@@ -1,8 +1,9 @@
-﻿using Entities.Enums;
+﻿using Entities.Abstract;
+using Entities.Enums;
 
 namespace Entities.Concrete
 {
-    public class Discount
+    public class Discount : IEntity
     {
         public int Id { get; set; }
 
