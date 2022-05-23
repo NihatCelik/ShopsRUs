@@ -7,8 +7,6 @@ namespace Business.Handlers.Discounts.ValidationRules
     {
         public CreateDiscountValidator()
         {
-            RuleFor(x => x.OverYear).NotEmpty();
-            RuleFor(x => x.DiscountRate).NotEmpty();
             RuleFor(x => x.UserType).NotEmpty();
         }
     }
@@ -17,8 +15,6 @@ namespace Business.Handlers.Discounts.ValidationRules
     {
         public UpdateDiscountValidator()
         {
-            RuleFor(x => x.OverYear).NotEmpty();
-            RuleFor(x => x.DiscountRate).NotEmpty();
             RuleFor(x => x.UserType).NotEmpty();
         }
     }

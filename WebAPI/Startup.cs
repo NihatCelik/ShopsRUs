@@ -1,16 +1,14 @@
 ﻿using Business;
+using Business.Helpers;
 using Core.Extensions;
 using Core.Utilities.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.SwaggerUI;
-using System;
 using System.Globalization;
 using System.IO;
 using System.Text.Json.Serialization;
@@ -79,6 +77,8 @@ namespace WebAPI
             switch (configurationManager.Mode)
             {
                 case ApplicationMode.Development:
+                    app.UseDbFakeDataCreator().Wait();
+                    break;
                 case ApplicationMode.Profiling:
                 case ApplicationMode.Staging:
 
@@ -95,7 +95,6 @@ namespace WebAPI
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("v1/swagger.json", "ShopsRUs");
-                c.DocExpansion(DocExpansion.None);
             });
             app.UseCors("AllowOrigin");
 

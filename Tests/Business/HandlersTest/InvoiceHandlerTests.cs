@@ -1,5 +1,4 @@
-﻿using Business.Constants;
-using Business.Handlers.Discounts.Queries;
+﻿using Business.Handlers.Discounts.Queries;
 using Business.Handlers.Invoices.Commands;
 using Business.Handlers.Invoices.Queries;
 using Business.Handlers.Users.Queries;

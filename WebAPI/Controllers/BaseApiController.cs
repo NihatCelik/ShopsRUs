@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace WebAPI.Controllers
 {
-    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class BaseApiController : Controller

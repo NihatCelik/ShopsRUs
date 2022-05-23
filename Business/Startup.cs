@@ -1,5 +1,4 @@
 using Autofac;
-using Business.Constants;
 using Business.DependencyResolvers;
 using Core.CrossCuttingConcerns.Caching;
 using Core.CrossCuttingConcerns.Caching.Microsoft;
@@ -11,14 +10,10 @@ using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.EntityFramework.Contexts;
 using FluentValidation;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 using System.Reflection;
-using System.Security.Claims;
-using System.Security.Principal;
 
 namespace Business
 {

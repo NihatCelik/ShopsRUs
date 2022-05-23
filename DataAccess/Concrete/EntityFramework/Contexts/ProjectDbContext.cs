@@ -8,7 +8,7 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
     {
         protected readonly IConfiguration Configuration;
 
-        protected ProjectDbContext(IConfiguration configuration)
+        public ProjectDbContext(IConfiguration configuration)
         {
             Configuration = configuration;
         }
