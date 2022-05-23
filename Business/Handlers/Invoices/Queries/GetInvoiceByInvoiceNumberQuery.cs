@@ -1,5 +1,4 @@
-﻿using Business.BusinessAspects;
-using Core.Utilities.Results;
+﻿using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using MediatR;
@@ -24,7 +23,6 @@ namespace Business.Handlers.Invoices.Queries
             _mediator = mediator;
         }
 
-        [SecuredOperation(Priority = 1)]
         public async Task<IDataResult<Invoice>> Handle(GetInvoiceByInvoiceNumberQuery request, CancellationToken cancellationToken)
         {
             var invoice = await _invoiceRepository.GetAsync(p => p.InvoiceNumber == request.InvoiceNumber);

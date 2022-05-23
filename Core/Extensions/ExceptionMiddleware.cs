@@ -1,5 +1,4 @@
-﻿using Core.Exceptions;
-using Core.Utilities.Messages;
+﻿using Core.Utilities.Messages;
 using Core.Utilities.Results;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
@@ -66,11 +65,6 @@ namespace Core.Extensions
             {
                 message = JsonConvert.SerializeObject(new ErrorResult(e.Message));
                 httpContext.Response.StatusCode = (int)HttpStatusCode.TemporaryRedirect;
-            }
-            else if (e.GetType() == typeof(TransactionScopeException))
-            {
-                message = JsonConvert.SerializeObject(new ErrorResult(e.Message));
-                httpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
             else if (e.GetType() == typeof(ArgumentException))
             {

@@ -1,5 +1,4 @@
-﻿using Business.BusinessAspects;
-using Core.Utilities.Results;
+﻿using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using MediatR;
@@ -24,7 +23,6 @@ namespace Business.Handlers.Users.Queries
             _mediator = mediator;
         }
 
-        [SecuredOperation(Priority = 1)]
         public async Task<IDataResult<User>> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetAsync(p => p.Id == request.Id);

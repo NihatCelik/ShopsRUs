@@ -1,5 +1,4 @@
-﻿using Business.BusinessAspects;
-using Business.Constants;
+﻿using Business.Constants;
 using Business.Handlers.Discounts.ValidationRules;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
@@ -33,8 +32,6 @@ namespace Business.Handlers.Discounts.Commands
 
         [ValidationAspect(typeof(UpdateDiscountValidator), Priority = 1)]
         [CacheRemoveAspect("Get")]
-        [LogAspect(typeof(FileLogger))]
-        [SecuredOperation(Priority = 1)]
         public async Task<IResult> Handle(UpdateDiscountCommand request, CancellationToken cancellationToken)
         {
             var isThereDiscountRecord = await _discountRepository.GetAsync(u => u.Id == request.Id);

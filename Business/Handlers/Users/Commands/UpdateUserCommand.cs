@@ -1,5 +1,4 @@
-﻿using Business.BusinessAspects;
-using Business.Constants;
+﻿using Business.Constants;
 using Business.Handlers.Users.ValidationRules;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
@@ -36,7 +35,6 @@ namespace Business.Handlers.Users.Commands
 
         [ValidationAspect(typeof(UpdateUserValidator), Priority = 1)]
         [CacheRemoveAspect("Get")]
-        [SecuredOperation(Priority = 1)]
         public async Task<IResult> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
             var isThereUserRecord = await _userRepository.GetAsync(u => u.Id == request.Id);

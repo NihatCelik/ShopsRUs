@@ -1,5 +1,4 @@
-﻿using Business.BusinessAspects;
-using Core.Aspects.Autofac.Caching;
+﻿using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Performance;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -28,7 +27,6 @@ namespace Business.Handlers.Invoices.Queries
 
         [PerformanceAspect(5)]
         [CacheAspect(10)]
-        [SecuredOperation(Priority = 1)]
         public async Task<IDataResult<IEnumerable<Invoice>>> Handle(GetInvoicesQuery request, CancellationToken cancellationToken)
         {
             return new SuccessDataResult<IEnumerable<Invoice>>(await _invoiceRepository.GetListAsync());

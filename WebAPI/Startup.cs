@@ -1,9 +1,6 @@
 ﻿using Business;
 using Core.Extensions;
 using Core.Utilities.IoC;
-using Core.Utilities.Security.Encyption;
-using Core.Utilities.Security.Jwt;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -58,32 +55,10 @@ namespace WebAPI
                 builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins(origins.Split(';')));
             });
 
-            var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
-
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidIssuer = tokenOptions.Issuer,
-                        ValidAudience = tokenOptions.Audience,
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey),
-                        ClockSkew = TimeSpan.Zero
-                    };
-                });
-
             services.AddSwaggerGen(c =>
             {
                 c.IncludeXmlComments(Path.ChangeExtension(typeof(Startup).Assembly.Location, ".xml"));
             });
-
-            services.AddTransient<FileLogger>();
-            services.AddTransient<PostgreSqlLogger>();
-            services.AddTransient<MsSqlLogger>();
 
             base.ConfigureServices(services);
         }
@@ -119,7 +94,7 @@ namespace WebAPI
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("v1/swagger.json", "Hesapizi");
+                c.SwaggerEndpoint("v1/swagger.json", "ShopsRUs");
                 c.DocExpansion(DocExpansion.None);
             });
             app.UseCors("AllowOrigin");
@@ -127,26 +102,6 @@ namespace WebAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseAuthentication();
-
-            app.UseAuthorization();
-
-            var supportedCultures = new[]
-            {
-                new CultureInfo("ar"),
-                new CultureInfo("en"),
-                new CultureInfo("de"),
-                new CultureInfo("tr"),
-            };
-
-            // Make Turkish your default language. It shouldn't change according to the server.
-            app.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture("tr-TR"),
-                SupportedCultures = supportedCultures,
-                SupportedUICultures = supportedCultures
-            });
 
             var cultureInfo = new CultureInfo("tr-TR");
             cultureInfo.DateTimeFormat.ShortTimePattern = "HH:mm";

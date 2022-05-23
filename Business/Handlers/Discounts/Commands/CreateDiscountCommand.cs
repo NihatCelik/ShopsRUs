@@ -1,5 +1,4 @@
-﻿using Business.BusinessAspects;
-using Business.Constants;
+﻿using Business.Constants;
 using Business.Handlers.Discounts.ValidationRules;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
@@ -8,6 +7,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.Enums;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -33,14 +33,13 @@ namespace Business.Handlers.Discounts.Commands
 
         [ValidationAspect(typeof(CreateDiscountValidator), Priority = 1)]
         [CacheRemoveAspect("Get")]
-        [SecuredOperation(Priority = 1)]
         public async Task<IResult> Handle(CreateDiscountCommand request, CancellationToken cancellationToken)
         {
-            var isThereDiscountRecord = _discountRepository.GetQuery().Any(u => u.OverYear == request.OverYear);
+            var isThereDiscountRecord = await _discountRepository.GetQuery().AnyAsync(u => u.DiscountRate == request.DiscountRate && u.UserType == request.UserType);
 
             if (isThereDiscountRecord)
             {
-                return new ErrorResult(Messages.NameAlreadyExist);
+                return new ErrorResult(Messages.DiscountAlreadyExist);
             }
 
             var addedDiscount = new Discount

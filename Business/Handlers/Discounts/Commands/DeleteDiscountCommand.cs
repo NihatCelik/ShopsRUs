@@ -1,5 +1,4 @@
-﻿using Business.BusinessAspects;
-using Business.Constants;
+﻿using Business.Constants;
 using Core.Aspects.Autofac.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -26,7 +25,6 @@ namespace Business.Handlers.Discounts.Commands
         }
 
         [CacheRemoveAspect("Get")]
-        [SecuredOperation(Priority = 1)]
         public async Task<IResult> Handle(DeleteDiscountCommand request, CancellationToken cancellationToken)
         {
             var discountToDelete = await _discountRepository.GetAsync(p => p.Id == request.Id);

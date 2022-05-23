@@ -1,5 +1,4 @@
-﻿using Business.BusinessAspects;
-using Core.Aspects.Autofac.Caching;
+﻿using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Performance;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -29,8 +28,6 @@ namespace Business.Handlers.Users.Queries
 
         [PerformanceAspect(5)]
         [CacheAspect(10)]
-        [LogAspect(typeof(FileLogger))]
-        [SecuredOperation(Priority = 1)]
         public async Task<IDataResult<IEnumerable<User>>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
         {
             return new SuccessDataResult<IEnumerable<User>>(await _userRepository.GetListAsync());

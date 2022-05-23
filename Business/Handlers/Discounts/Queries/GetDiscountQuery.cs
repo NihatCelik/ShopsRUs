@@ -1,5 +1,4 @@
-﻿using Business.BusinessAspects;
-using Core.Utilities.Results;
+﻿using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using MediatR;
@@ -24,7 +23,6 @@ namespace Business.Handlers.Discounts.Queries
             _mediator = mediator;
         }
 
-        [SecuredOperation(Priority = 1)]
         public async Task<IDataResult<Discount>> Handle(GetDiscountQuery request, CancellationToken cancellationToken)
         {
             var discount = await _discountRepository.GetAsync(p => p.Id == request.Id);

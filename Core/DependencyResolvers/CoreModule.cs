@@ -2,8 +2,6 @@
 using Core.CrossCuttingConcerns.Caching.Microsoft;
 using Core.Utilities.IoC;
 using Core.Utilities.Messages;
-using Core.Utilities.UrlConfiguration;
-using Core.Utilities.UserRequest;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -20,10 +18,7 @@ namespace Core.DependencyResolvers
         {
             services.AddMemoryCache();
             services.AddSingleton<ICacheManager, MemoryCacheManager>();
-            services.AddSingleton<IUrlConfiguration, UrlConfiguration>();
-            services.AddSingleton<IUrlService, UrlManager>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<IUserRequestService, UserRequestManager>();
             services.AddSingleton<Stopwatch>();
             services.AddMediatR(Assembly.GetExecutingAssembly());
 

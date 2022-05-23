@@ -6,7 +6,6 @@ using Core.CrossCuttingConcerns.Caching.Microsoft;
 using Core.DependencyResolvers;
 using Core.Extensions;
 using Core.Utilities.IoC;
-using Core.Utilities.Security.Jwt;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.EntityFramework.Contexts;
@@ -36,12 +35,6 @@ namespace Business
 
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            Func<IServiceProvider, ClaimsPrincipal> getPrincipal = (sp) =>
-            {
-                return sp.GetService<IHttpContextAccessor>().HttpContext?.User ?? new ClaimsPrincipal(new ClaimsIdentity(Messages.Unknown));
-            };
-
-            services.AddScoped<IPrincipal>(getPrincipal);
             services.AddMemoryCache();
 
             services.AddDependencyResolvers(Configuration, new ICoreModule[]
@@ -51,13 +44,6 @@ namespace Business
 
             services.AddSingleton<ConfigurationManager>();
 
-            services.AddTransient<IPosPaymentService, PayTRManager>();
-
-            services.AddTransient<ITokenHelper, JwtHelper>();
-            services.AddTransient<IElasticSearch, ElasticSearchManager>();
-
-            services.AddTransient<IMessageBrokerHelper, MqQueueHelper>();
-            services.AddTransient<IMessageConsumer, MqConsumerHelper>();
             services.AddSingleton<ICacheManager, MemoryCacheManager>();
 
             services.AddAutoMapper(typeof(ConfigurationManager));

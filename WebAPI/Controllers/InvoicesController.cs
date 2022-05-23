@@ -22,27 +22,15 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyinvoicenumber")]
-        public async Task<IActionResult> GetByinvoiceNumber(string invoiceNumber)
+        public async Task<IActionResult> GetByInvoiceNumber(string invoiceNumber)
         {
             return GetResponse(await Mediator.Send(new GetInvoiceByInvoiceNumberQuery { InvoiceNumber = invoiceNumber }));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] CreateInvoiceCommand createInvoice)
+        public async Task<IActionResult> GenerateInvoiceForACustomer([FromBody] CreateInvoiceCommand createInvoiceCommand)
         {
-            return GetResponse(await Mediator.Send(createInvoice));
-        }
-
-        [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateInvoiceCommand updateInvoice)
-        {
-            return GetResponse(await Mediator.Send(updateInvoice));
-        }
-
-        [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] DeleteInvoiceCommand deleteInvoice)
-        {
-            return GetResponse(await Mediator.Send(deleteInvoice));
+            return GetResponse(await Mediator.Send(createInvoiceCommand));
         }
     }
 }
